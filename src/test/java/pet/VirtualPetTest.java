@@ -16,46 +16,91 @@ public class VirtualPetTest {
 	@Test
 	public void eatFoodOption1() {
 		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setHealth(50);
 		int healthBefore = underTest.getHealth();
 		underTest.eat("apple");
 		int healthAfter = underTest.getHealth();
-		assertEquals(healthAfter, healthBefore + 5, 0);
+		assertEquals(healthAfter, healthBefore + underTest.getApplesHBoost(), 0);
+	}
+	
+	@Test
+	public void eatFoodOption2() {
+		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setHealth(50);
+		int healthBefore = underTest.getHealth();
+		underTest.eat("pepper");
+		int healthAfter = underTest.getHealth();
+		assertEquals(healthAfter, healthBefore + underTest.getPeppersHBoost(), 0);
+	}
+	
+	@Test
+	public void eatFoodOption3() {
+		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setHealth(50);
+		int healthBefore = underTest.getHealth();
+		underTest.eat("mushroom");
+		int healthAfter = underTest.getHealth();
+		assertEquals(healthAfter, healthBefore + underTest.getMushroomsHBoost(), 0);
 	}
 	
 	@Test
 	public void eatFoodOption4() {
 		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setHealth(50);
 		int healthBefore = underTest.getHealth();
 		underTest.eat("fish");
 		int healthAfter = underTest.getHealth();
-		assertEquals(healthAfter, healthBefore + 50, 0);
+		assertEquals(healthAfter, healthBefore + underTest.getFishHBoost(), 0);
 	}
 
 	@Test
 	public void drinkPotionOption2() {
 		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setStamina(50);
 		int staminaBefore = underTest.getStamina();
 		underTest.drink("Blue");
 		int staminaAfter = underTest.getStamina();
-		assertEquals(staminaAfter, staminaBefore + 20, 0);
+		assertEquals(staminaAfter, staminaBefore + underTest.getBlueSBoost(), 0);
 	}
 	
 	@Test
-	public void fightMonsterOption1TestStamina() {
+	public void drinkPotionOption1() {
+		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setStamina(50);
+		int staminaBefore = underTest.getStamina();
+		underTest.drink("Red");
+		int staminaAfter = underTest.getStamina();
+		assertEquals(staminaAfter, staminaBefore + underTest.getRedSBoost(), 0);
+	}
+	
+	@Test
+	public void drinkPotionOption3() {
+		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.setStamina(50);
+		int staminaBefore = underTest.getStamina();
+		underTest.drink("Yellow");
+		int staminaAfter = underTest.getStamina();
+		assertEquals(staminaAfter, staminaBefore + underTest.getYellowSBoost(), 0);
+	}
+	
+	@Test
+	public void fightMonsterTestStamina() {
 		VirtualPet underTest = new VirtualPet("Bob");
 		int staminaBefore = underTest.getStamina();
-		underTest.fight("Bokoblin");
+		underTest.fight();
 		int staminaAfter = underTest.getStamina();
-		assertEquals(staminaAfter, staminaBefore - 50, 0);
+		assertEquals(staminaAfter, staminaBefore + underTest.getMonsterStamina(), 0);
 	}
 	
 	@Test
-	public void fightMonsterOption1TestHealth() {
+	public void fightMonsterTestHealth() {
 		VirtualPet underTest = new VirtualPet("Bob");
+		underTest.createMonster();
 		int healthBefore = underTest.getHealth();
-		underTest.fight("Bokoblin");
+		int healthChange = underTest.getMonsterHealth();
+		underTest.fight();
 		int healthAfter = underTest.getHealth();
-		assertEquals(healthAfter, healthBefore - 20, 0);
+		assertEquals(healthAfter, healthBefore + healthChange, 0);
 	}
 
 	@Test
@@ -65,14 +110,6 @@ public class VirtualPetTest {
 		underTest.eat("apple");
 		int applesAfter = underTest.getApples();
 		assertEquals(applesAfter, applesBefore - 1, 0);		
-	}
-	
-	@Test
-	public void testRandomFoodDrop() {
-		VirtualPet underTest = new VirtualPet("Bob");
-		underTest.dropFood();
-		int foodType = underTest.getFoodNum();
-		assertEquals(1, foodType, 0);
 	}
 	
 	@Test
