@@ -1,6 +1,6 @@
-# Virtual Pet Project
+# Virtual Adventurer Project
 
-The app prompts the user for a name and then generates a Virtual Pet Adventurer.
+The app prompts the user for a name and then generates a Virtual Adventurer.
 Each Adventurer has stats showing their Health, Stamina, and Shield. 
 
 During each turn, the user has four actions for their Adventurer:
